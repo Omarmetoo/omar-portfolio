@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 // TODO: Sign up at https://formspree.io, create a new form, and paste your form ID below.
 // The ID looks like "xabcdefg" — replace YOUR_FORMSPREE_ID with it.
-const FORMSPREE_ID = "YOUR_FORMSPREE_ID";
+const FORMSPREE_ID = "mlgkpvpd";
 
 const contactLinks = [
   {
@@ -99,14 +99,6 @@ export default function Contact() {
           <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] rounded-t-2xl bg-gradient-to-r from-indigo-500 to-purple-600" />
 
           <h2 className="text-sm font-semibold text-slate-900 dark:text-white">Send a message</h2>
-          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-            {/* TODO: Formspree form will be live once you add your form ID above */}
-            {FORMSPREE_ID === "YOUR_FORMSPREE_ID" && (
-              <span className="text-amber-500 dark:text-amber-400">
-                ⚠ Form not yet connected — add your Formspree ID in Contact.jsx
-              </span>
-            )}
-          </p>
 
           {status === "success" ? (
             <motion.div
