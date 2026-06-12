@@ -1,52 +1,81 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-export default function Services() {
-  const services = [
-    {
-      title: "Full-Stack Web Development",
-      desc: "Building complete and scalable web applications using the MERN stack. Authentication, dashboards, APIs, real-time updates, and clean architecture."
-    },
-    {
-      title: "Frontend Development",
-      desc: "Modern, fast, and aesthetic user interfaces using React.js and TailwindCSS. Smooth interactions and pixel-perfect components."
-    },
-    {
-      title: "Mobile App Development",
-      desc: "Cross-platform Flutter apps built with clean architecture, reusable components, and responsive UI for both Android and iOS."
-    },
-    {
-      title: "Backend Development & APIs",
-      desc: "Designing secure backend systems, scalable APIs, authentication, database modeling, and server logic using Node.js & Express."
-    },
-    {
-      title: "UI/UX & Prototyping",
-      desc: "Creating modern interfaces on Figma, including prototypes, design systems, and clean wireframes ready for development."
-    },
-    {
-      title: "Java Desktop / System Development",
-      desc: "Developing desktop applications using Java, OOP, SOLID principles, and clean, testable code with JUnit."
-    },
-    {
-      title: "Landing Pages & Business Websites",
-      desc: "High-converting landing pages & business websites optimized for speed, SEO, and clarity. Ideal for startups and small businesses."
-    },
-    {
-      title: "Code Cleanup & Refactoring",
-      desc: "Fixing messy projects, improving code quality, structuring files, removing bugs, and boosting performance."
-    },
-    {
-      title: "Project Planning & Tech Consultation",
-      desc: "Helping clients choose the right tech stack, design architectures, plan databases, and structure project goals."
-    }
-  ];
+const services = [
+  {
+    icon: "⚡",
+    title: "Full-Stack Web Application",
+    client: "You have an idea or spec. I ship the product.",
+    desc: "I build the whole thing — frontend, backend, database, auth, API. React or Next.js on the front, Node/Express on the back, MongoDB or SQL underneath. You get a production-ready app, not a prototype.",
+    good_for: "SaaS products, dashboards, marketplaces, internal tools",
+    color: "from-indigo-500 to-purple-600",
+  },
+  {
+    icon: "🎯",
+    title: "Frontend / UI Development",
+    client: "You have a backend or design. I make it beautiful and fast.",
+    desc: "Pixel-perfect React/Next.js UIs that load fast and feel natural. I work from Figma designs, wireframes, or verbal descriptions. Clean components, smooth animations, fully responsive.",
+    good_for: "Landing pages, dashboards, client portals, redesigns",
+    color: "from-cyan-500 to-blue-600",
+  },
+  {
+    icon: "🔌",
+    title: "Backend API & Integrations",
+    client: "You need a robust API or third-party integrations done right.",
+    desc: "REST APIs, authentication flows (JWT/OAuth), database design, webhooks, and third-party integrations (payments, maps, AI APIs, email services). Secure, documented, and ready to scale.",
+    good_for: "API-first apps, Stripe/payment integrations, webhook systems",
+    color: "from-emerald-500 to-teal-600",
+  },
+  {
+    icon: "🤖",
+    title: "AI Feature Integration",
+    client: "You want AI capabilities inside your existing product.",
+    desc: "I wire AI into your app using OpenAI APIs, custom ML models (VADER, TF-IDF), vector search, or chatbot flows. I built AI-powered search and review analysis into Mkank — I can do the same for you.",
+    good_for: "Chatbots, recommendation engines, content analysis, smart search",
+    color: "from-violet-500 to-purple-600",
+  },
+  {
+    icon: "📱",
+    title: "Mobile App (Flutter)",
+    client: "You need one app that runs on both Android and iOS.",
+    desc: "Cross-platform Flutter apps with clean architecture and native-feeling UX. One codebase, two platforms, zero compromises on performance or design.",
+    good_for: "Business apps, travel apps, booking systems, utility tools",
+    color: "from-orange-500 to-amber-500",
+  },
+  {
+    icon: "🚀",
+    title: "Landing Page & Business Website",
+    client: "You need a site that converts visitors to leads.",
+    desc: "Fast, SEO-ready landing pages and business websites. I focus on load speed, clear copy hierarchy, and strong calls-to-action. Deployed and optimised out of the box.",
+    good_for: "Product launches, agencies, freelancers, small businesses",
+    color: "from-pink-500 to-rose-500",
+  },
+  {
+    icon: "🔍",
+    title: "Code Review & Rescue",
+    client: "Your project is messy, slow, or broken. I fix it.",
+    desc: "I audit codebases, identify bottlenecks, fix bugs, improve architecture, and bring performance up. Useful when you've inherited a project or outgrown your MVP.",
+    good_for: "Inherited codebases, performance issues, security fixes",
+    color: "from-slate-500 to-slate-600",
+  },
+  {
+    icon: "💡",
+    title: "Technical Consultation",
+    client: "You need help choosing the right stack or planning the architecture.",
+    desc: "I help you make the right technical decisions early — stack selection, database schema, API design, project structure. Hourly sessions available.",
+    good_for: "Pre-development planning, architecture review, tech interviews",
+    color: "from-amber-500 to-yellow-500",
+  },
+];
 
+export default function Services() {
   return (
     <section className="relative py-10 space-y-10 overflow-hidden">
 
-      {/* BACKGROUND GLOWS */}
-      <div className="pointer-events-none absolute -top-32 left-0 h-[350px] w-[350px] rounded-full bg-gradient-to-br from-indigo-500/40 to-purple-600/40 blur-3xl opacity-70 animate-pulse" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-[450px] w-[450px] rounded-full bg-gradient-to-br from-cyan-400/30 to-indigo-500/40 blur-3xl opacity-60 animate-pulse" />
+      {/* BACKGROUND */}
+      <div className="pointer-events-none absolute -top-32 left-0 h-[350px] w-[350px] rounded-full bg-gradient-to-br from-indigo-500/30 to-purple-600/30 blur-3xl opacity-60" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-[450px] w-[450px] rounded-full bg-gradient-to-br from-cyan-400/20 to-indigo-500/30 blur-3xl opacity-50" />
 
       {/* HEADER */}
       <motion.div
@@ -54,14 +83,13 @@ export default function Services() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="relative inline-block text-3xl font-bold text-slate-900 dark:text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.25)]">
+        <h1 className="relative inline-block text-3xl font-bold text-slate-900 dark:text-white">
           Services
-          <span className="absolute -bottom-2 left-0 h-[3px] w-full bg-gradient-to-r from-indigo-500 to-purple-600 animate-[pulse_1.8s_infinite]" />
+          <span className="absolute -bottom-2 left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-600" />
         </h1>
-
-        <p className="mt-4 text-sm max-w-xl text-slate-600 dark:text-slate-300">
-          These are the areas I work in as a full-stack and mobile developer. I focus on writing clean,
-          maintainable code and delivering high-quality results across web, mobile, backend, and UI design.
+        <p className="mt-4 max-w-xl text-sm text-slate-600 dark:text-slate-300">
+          What I can build for you. Every service is described from your perspective as a client —
+          what problem it solves, and what you walk away with.
         </p>
       </motion.div>
 
@@ -71,37 +99,65 @@ export default function Services() {
         animate="show"
         variants={{
           hidden: { opacity: 0 },
-          show: { opacity: 1, transition: { staggerChildren: 0.09 } },
+          show: { opacity: 1, transition: { staggerChildren: 0.08 } },
         }}
-        className="grid gap-6 md:grid-cols-2"
+        className="grid gap-5 md:grid-cols-2"
       >
-        {services.map((service, i) => (
+        {services.map((service) => (
           <motion.div
             key={service.title}
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              show: { opacity: 1, y: 0 },
-            }}
-            whileHover={{ y: -6, scale: 1.02 }}
+            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+            whileHover={{ y: -5 }}
             transition={{ type: "spring", stiffness: 160 }}
-            className="relative rounded-2xl border border-white/20 bg-white/60 dark:bg-slate-900/60 backdrop-blur-lg
-                       p-6 shadow-xl dark:shadow-[0_0_25px_rgba(99,102,241,0.15)] overflow-hidden"
+            className="relative rounded-2xl border border-white/20 bg-white/60 p-6 shadow-xl backdrop-blur-lg dark:bg-slate-900/60 dark:shadow-[0_0_25px_rgba(99,102,241,0.1)] overflow-hidden"
           >
-            {/* CARD SHINE */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-white/70 to-transparent" />
+            {/* accent top line */}
+            <div className={`pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r ${service.color}`} />
 
-            {/* GRADIENT CORNER ACCENT */}
-            <div className="absolute right-0 top-0 h-20 w-20 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 blur-2xl opacity-40" />
+            <div className="flex items-start gap-3">
+              <span className="text-xl leading-none" aria-hidden="true">{service.icon}</span>
+              <div className="flex-1">
+                <h2 className="text-sm font-semibold text-slate-900 dark:text-white">
+                  {service.title}
+                </h2>
+                <p className="mt-0.5 text-[11px] italic text-indigo-500 dark:text-indigo-400">
+                  "{service.client}"
+                </p>
+              </div>
+            </div>
 
-            <h2 className="text-sm font-semibold text-slate-900 dark:text-white">
-              {service.title}
-            </h2>
-
-            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
+            <p className="mt-3 text-xs leading-relaxed text-slate-600 dark:text-slate-300">
               {service.desc}
+            </p>
+
+            <p className="mt-3 text-[10px] text-slate-500 dark:text-slate-500">
+              <span className="font-semibold text-slate-600 dark:text-slate-400">Good for: </span>
+              {service.good_for}
             </p>
           </motion.div>
         ))}
+      </motion.div>
+
+      {/* CTA CARD */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="rounded-2xl border border-indigo-200/60 bg-gradient-to-br from-indigo-50 to-purple-50 p-6 text-center dark:border-indigo-800/40 dark:from-indigo-950/40 dark:to-purple-950/40"
+      >
+        <p className="text-sm font-semibold text-slate-900 dark:text-white">
+          Not sure which service fits? Let's talk.
+        </p>
+        <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+          I'll help you figure out what you actually need before any contract is signed.
+        </p>
+        <Link
+          to="/contact"
+          className="mt-4 inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition hover:-translate-y-px hover:shadow-xl"
+        >
+          Get in touch →
+        </Link>
       </motion.div>
 
     </section>

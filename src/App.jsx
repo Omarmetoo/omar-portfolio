@@ -10,9 +10,18 @@ import Projects from "./pages/Projects.jsx";
 import Experience from "./pages/Experience.jsx";
 import Education from "./pages/Education.jsx";
 import Contact from "./pages/Contact.jsx";
+import NotFound from "./pages/NotFound.jsx";
+
+function getInitialTheme() {
+  try {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light" || saved === "dark") return saved;
+  } catch {}
+  return "dark";
+}
 
 export default function App() {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
     if (theme === "dark") {
@@ -20,6 +29,9 @@ export default function App() {
     } else {
       document.documentElement.classList.remove("dark");
     }
+    try {
+      localStorage.setItem("theme", theme);
+    } catch {}
   }, [theme]);
 
   const toggleTheme = () =>
@@ -45,10 +57,40 @@ export default function App() {
           <Route path="/experience" element={<Experience />} />
           <Route path="/education" element={<Education />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
-        <footer className="mt-10 border-t border-slate-200/60 pt-4 text-center text-xs text-slate-500 dark:border-slate-800 dark:text-slate-500">
-          © {new Date().getFullYear()} Omar Mohammed. All rights reserved.
+        <footer className="mt-10 border-t border-slate-200/60 pt-6 dark:border-slate-800">
+          <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
+            <p className="text-xs text-slate-500 dark:text-slate-500">
+              © {new Date().getFullYear()} Omar Mohammed. All rights reserved.
+            </p>
+            <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-500">
+              <a
+                href="mailto:omarmetoo2@gmail.com"
+                className="transition hover:text-indigo-500 dark:hover:text-indigo-400"
+              >
+                omarmetoo2@gmail.com
+              </a>
+              <a
+                href="https://www.linkedin.com/in/omar-mohammed-7729442b3"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition hover:text-indigo-500 dark:hover:text-indigo-400"
+              >
+                LinkedIn
+              </a>
+              {/* TODO: Replace # with your actual GitHub profile URL */}
+              <a
+                href="https://github.com/Omarmetoo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition hover:text-indigo-500 dark:hover:text-indigo-400"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
         </footer>
       </main>
     </div>
