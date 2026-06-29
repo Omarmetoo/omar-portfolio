@@ -1,18 +1,33 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-const MKANK_FEATURES = [
-  "JWT authentication with role-based access (tenant / landlord / admin)",
-  "360° virtual property tours for remote viewing before visiting",
-  "Real-time chat between tenants and landlords via WebSockets",
-  "AI chatbot assistant for property Q&A and recommendations",
-  "VADER sentiment analysis on property reviews for trust scoring",
-  "TF-IDF content-based recommendation engine for personalised listings",
-  "Advanced property search with filters (price, location, type, amenities)",
-  "Admin dashboard for listings, users, and platform analytics",
-];
-
 const projects = [
+  {
+    featured: true,
+    title: "Replyr — AI Customer Support SaaS",
+    tagline: "Embeddable AI support agent — upload your docs, get a live chatbot in under 10 minutes",
+    problem:
+      "Businesses lose customers 24/7 because they can't staff live support around the clock. Generic chatbots hallucinate and erode trust. There was no dead-simple way for a small business to deploy an AI agent grounded strictly in their own documentation.",
+    built:
+      "End-to-end SaaS: admin dashboard for bot creation and doc upload, a RAG pipeline (chunk → embed via Cohere → store in MongoDB Atlas Vector Search → retrieve semantically at query time), streaming chat API with rate limiting and CORS, and an embeddable Preact widget isolated in Shadow DOM — loads from a single <script> tag. Human handoff captures visitor emails when the AI can't answer.",
+    stack: ["Next.js 16", "TypeScript", "Tailwind CSS", "MongoDB Atlas", "Cohere Embeddings", "Groq (LLaMA 3.3 70B)", "Clerk Auth", "Preact", "Vite", "Vercel"],
+    outcome:
+      "A business can sign up, upload their FAQ, and have an AI support agent live on their website in under 10 minutes. The widget is fully CSS-isolated via Shadow DOM, streams responses in real time, and never hallucinates outside the uploaded content.",
+    liveUrl: "https://replyr-mu.vercel.app/",
+    githubUrl: "#",
+    type: "Full-Stack SaaS",
+    color: "from-violet-500 to-fuchsia-600",
+    features: [
+      "Admin dashboard: create bots, upload docs, customize widget, view conversation history",
+      "RAG pipeline: documents chunked, embedded with Cohere, stored in MongoDB Atlas Vector Search",
+      "Semantic retrieval at query time — answers only from uploaded content, zero hallucinations",
+      "Streaming chat API with rate limiting and CORS support",
+      "Embeddable Preact widget in Shadow DOM — fully CSS-isolated, loads from a single <script> tag",
+      "Human handoff: captures visitor email when the AI can't answer",
+      "Multi-tenant architecture with Clerk authentication",
+      "Production-deployed on Vercel — not a tutorial clone",
+    ],
+  },
   {
     featured: true,
     title: "Mkank — Smart Rental Platform",
@@ -24,12 +39,20 @@ const projects = [
     stack: ["Next.js", "Node.js", "Express", "MongoDB", "JWT", "Socket.io", "VADER", "TF-IDF", "Python", "TailwindCSS"],
     outcome:
       "End-to-end platform handling thousands of listing interactions. VADER-scored reviews increased trust signals; TF-IDF recommendations improved listing relevance. Real-time chat eliminated the WhatsApp dependency entirely.",
-    // TODO: Replace "#" with the actual live URL once deployed
-    liveUrl: "#",
-    // TODO: Replace "#" with your GitHub repo URL for this project
-    githubUrl: "#",
+    liveUrl: "https://mkank-beige.vercel.app/",
+    githubUrl: "https://github.com/Omarmetoo/mkank",
     type: "Full-Stack Platform",
     color: "from-indigo-500 to-purple-600",
+    features: [
+      "JWT authentication with role-based access (tenant / landlord / admin)",
+      "360° virtual property tours for remote viewing before visiting",
+      "Real-time chat between tenants and landlords via WebSockets",
+      "AI chatbot assistant for property Q&A and recommendations",
+      "VADER sentiment analysis on property reviews for trust scoring",
+      "TF-IDF content-based recommendation engine for personalised listings",
+      "Advanced property search with filters (price, location, type, amenities)",
+      "Admin dashboard for listings, users, and platform analytics",
+    ],
   },
   {
     featured: false,
@@ -178,7 +201,7 @@ function FeaturedProject({ project }) {
             animate={{ opacity: 1, height: "auto" }}
             className="mt-3 grid gap-1.5 text-xs text-slate-600 dark:text-slate-300 sm:grid-cols-2"
           >
-            {MKANK_FEATURES.map((f) => (
+            {project.features.map((f) => (
               <li key={f} className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500" />
                 {f}
@@ -300,7 +323,7 @@ function ProjectCard({ project, index }) {
 }
 
 export default function Projects() {
-  const featured = projects.find((p) => p.featured);
+  const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
 
   return (
@@ -326,7 +349,9 @@ export default function Projects() {
       </motion.div>
 
       {/* FEATURED */}
-      {featured && <FeaturedProject project={featured} />}
+      {featured.map((p) => (
+        <FeaturedProject key={p.title} project={p} />
+      ))}
 
       {/* OTHER PROJECTS */}
       <div>
