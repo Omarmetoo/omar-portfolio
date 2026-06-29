@@ -14,7 +14,7 @@ const projects = [
     outcome:
       "A business can sign up, upload their FAQ, and have an AI support agent live on their website in under 10 minutes. The widget is fully CSS-isolated via Shadow DOM, streams responses in real time, and never hallucinates outside the uploaded content.",
     liveUrl: "https://replyr-mu.vercel.app/",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Omarmetoo/replyr",
     type: "Full-Stack SaaS",
     color: "from-violet-500 to-fuchsia-600",
     features: [
